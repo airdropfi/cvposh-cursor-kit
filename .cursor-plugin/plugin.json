@@ -1,0 +1,14 @@
+{
+  "name": "cvposh",
+  "description": "Read your CVPosh resumes, check them for ATS problems and match them to a job posting. Read-only: it never changes your CVs.",
+  "version": "1.0.0",
+  "author": {
+    "name": "CVPosh",
+    "email": "support@cvposh.com"
+  },
+  "homepage": "https://cvposh.com",
+  "repository": "https://github.com/airdropfi/cvposh-cursor-kit",
+  "license": "MIT",
+  "keywords": ["cvposh", "resume", "cv", "ats", "job application"],
+  "logo": "assets/logo.png"
+}

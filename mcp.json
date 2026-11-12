@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "cvposh": {
+      "url": "https://cvposh.com/api/mcp",
+      "headers": {
+        "Authorization": "Bearer ${env:CVPOSH_API_KEY}"
+      }
+    }
+  }
+}
