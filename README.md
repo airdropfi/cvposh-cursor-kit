@@ -8,7 +8,7 @@ Work on the resumes you built at [CVPosh](https://cvposh.com) without copy and p
 - **Who uses it:** an AI assistant or agent (ChatGPT, Claude, Claude Code, Cursor, Gemini CLI, other MCP clients) working for a job seeker or career coach. The human tags the work, approves the connection and reviews the output.
 - **What it does not do:** every tool is read-only, so an agent cannot create, edit, delete, export or share a CV. The ATS score is a fixed checklist, not a simulation of any employer's system, and it does not predict interviews or hiring.
 - **Price:** the connector needs a free CVPosh account and is not tied to a paid plan. CVPosh Pro is $5 per month or $9 once and covers DOCX export, more PDF exports, all 25 templates and AI job tailoring in the editor.
-- **Data and control:** the ATS and keyword checks run on CVPosh servers with fixed rules, call no AI model and store nothing. You approve the connection on a consent page, see it under Settings > API keys, and can delete it at any time; connections expire after 90 days. Profile photos are never sent.
+- **Data and control:** the ATS and keyword checks run on CVPosh servers with fixed rules, call no AI model and store nothing. Cursor cannot use OAuth, so you create an API key in Settings > API keys; the key does not expire, and deleting it there disconnects the agent at once. Profile photos are never sent.
 - **MCP:** `https://cvposh.com/api/mcp` (Streamable HTTP). Official MCP Registry name: `com.cvposh/cvposh`. Server card: https://cvposh.com/.well-known/mcp/server-card.json
 - **Limits per connection:** 120 requests a minute, 100 tool calls a day.
 
