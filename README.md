@@ -2,6 +2,44 @@
 
 Work on the resumes you built at [CVPosh](https://cvposh.com) without copy and paste, from Cursor or Grok Build. Everything is read-only: your agent can read your CVs, score them for applicant tracking systems (ATS) and compare them with a job posting, but it cannot change, delete or share them.
 
+## At a glance
+
+- **What it is:** CVPosh is a resume and CV builder with an MCP server built for AI agents: your agent reads your saved CVs, scores them for ATS compatibility and compares them with a job posting, and you review and edit the result.
+- **Who uses it:** an AI assistant or agent (ChatGPT, Claude, Claude Code, Cursor, Gemini CLI, other MCP clients) working for a job seeker or career coach. The human tags the work, approves the connection and reviews the output.
+- **What it does not do:** every tool is read-only, so an agent cannot create, edit, delete, export or share a CV. The ATS score is a fixed checklist, not a simulation of any employer's system, and it does not predict interviews or hiring.
+- **Price:** the connector needs a free CVPosh account and is not tied to a paid plan. CVPosh Pro is $5 per month or $9 once and covers DOCX export, more PDF exports, all 25 templates and AI job tailoring in the editor.
+- **Data and control:** the ATS and keyword checks run on CVPosh servers with fixed rules, call no AI model and store nothing. Cursor cannot use OAuth, so you create an API key in Settings > API keys; the key does not expire, and deleting it there disconnects the agent at once. Profile photos are never sent.
+- **MCP:** `https://cvposh.com/api/mcp` (Streamable HTTP). Official MCP Registry name: `com.cvposh/cvposh`. Server card: https://cvposh.com/.well-known/mcp/server-card.json
+- **Limits per connection:** 120 requests a minute, 100 tool calls a day.
+
+## Install in 60 seconds
+
+1. In CVPosh, open Settings > API keys and create a key (Cursor connects with the key, not OAuth).
+2. Put it in the `CVPOSH_API_KEY` environment variable and add the server to `~/.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "cvposh": {
+      "url": "https://cvposh.com/api/mcp",
+      "headers": { "Authorization": "Bearer ${env:CVPOSH_API_KEY}" }
+    }
+  }
+}
+```
+
+Open Customize, then MCPs: `cvposh` should list four tools.
+
+## Prompts to copy
+
+You assign the work and review the result:
+
+- "Assign to CVPosh: list my saved CVs, run the ATS check on the newest one and show me the issues in priority order. Change nothing; I will make the edits and review each one."
+- "Use CVPosh to compare my CV with the job posting below. Show matched and missing keywords and quote where each comes from, so I can approve what to add. [paste posting]"
+- "Read my CV with CVPosh and draft three stronger bullets for my most recent job. Show each next to the original; I approve before anything goes into my CV."
+
+More prompts, the agent quickstart, error handling and the human-oversight controls: https://cvposh.com/mcp (markdown: https://cvposh.com/mcp.md)
+
 ## Sign-in: API key (not OAuth) in Cursor
 
 CVPosh's OAuth sign-in only accepts the callbacks of Claude, ChatGPT and local loopback clients (`http://localhost` / `127.0.0.1`). Cursor's own callback (`cursor://`) is not on that list, so **in Cursor you connect with a CVPosh API key** sent as an `Authorization: Bearer` header.
@@ -94,6 +132,15 @@ examples/prompts.md          example prompts
 ## Support
 
 support@cvposh.com or https://cvposh.com.
+
+## Links
+
+- Site: https://cvposh.com
+- MCP page (setup for every client, quickstart, oversight): https://cvposh.com/mcp
+- Pricing: https://cvposh.com/pricing
+- Official MCP Registry: https://registry.modelcontextprotocol.io/v0/servers?search=cvposh
+- Other clients: https://github.com/airdropfi/cvposh-claude-plugin, https://github.com/airdropfi/cvposh-gemini-extension, https://github.com/airdropfi/cvposh-cursor-kit
+- Privacy: https://cvposh.com/privacy#ai-assistants
 
 ## License
 
